@@ -11,9 +11,7 @@ const locationService = () => {
           return response.data;
         });
 
-      return {
-        responseData,
-      };
+      return responseData;
     } catch (error) {
       //to do
       return null;
@@ -31,9 +29,7 @@ const locationService = () => {
           return response.data;
         });
 
-      return {
-        responseData,
-      };
+      return responseData;
     } catch (error) {
       //to do
       return null;
@@ -48,9 +44,7 @@ const locationService = () => {
           return response.data;
         });
 
-      return {
-        responseData,
-      };
+      return responseData;
     } catch (error) {
       //to do
       return null;
@@ -74,9 +68,7 @@ const locationService = () => {
           return response.data;
         });
 
-      return {
-        responseData,
-      };
+      return responseData;
     } catch (error) {
       //to do
       return null;
