@@ -1,25 +1,32 @@
 <template>
   <div>
-    <weather-base-info :baseInfo="weatherToday" />
-    <weather-daily-range :weatherNextNdays="weatherNextNdays(5)" />
+    <weather-base-info :baseInfo="weatherForToday(todayDate)" />
+    <weather-daily-info :dailyInfo="weatherForNextDays(todayDate, 5)" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import WeatherBaseInfo from '../WeatherBaseInfo.vue';
-import WeatherDailyRange from '../WeatherDailyRange.vue';
+import WeatherDailyInfo from '../WeatherDailyInfo.vue';
+
+import { formatDate } from '../../utils/common.js';
 
 export default {
   name: 'WeatherWrapper',
   components: {
     WeatherBaseInfo,
-    WeatherDailyRange,
+    WeatherDailyInfo,
+  },
+  data() {
+    return {
+      todayDate: formatDate(new Date()),
+    };
   },
   computed: {
     ...mapGetters({
-      weatherToday: 'weather/WEATHER_TODAY',
-      weatherNextNdays: 'weather/WEATHER_NEXT_N_DAYS',
+      weatherForToday: 'weather/DAILY_WEATHER_PER_DATE',
+      weatherForNextDays: 'weather/WEATHER_DAY_RANGE',
     }),
   },
 };

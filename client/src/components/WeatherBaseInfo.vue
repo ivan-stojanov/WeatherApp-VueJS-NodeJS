@@ -1,10 +1,11 @@
 <template>
-  <div v-if="baseInfo.id">
+  <div v-if="baseInfo && baseInfo.id">
     <div>title: {{ baseInfo.title }}</div>
     <div>parent_title: {{ baseInfo.parent_title }}</div>
-    <div>time: {{ baseInfo.time }}</div>
-    <div>sun_rise: {{ baseInfo.sun_rise }}</div>
-    <div>sun_set: {{ baseInfo.sun_set }}</div>
+    <div>timezone: {{ baseInfo.timezone }}</div>
+    <div>today_time: {{ baseInfo.today_time }}</div>
+    <div>today_sun_rise: {{ baseInfo.today_sun_rise }}</div>
+    <div>today_sun_set: {{ baseInfo.today_sun_set }}</div>
     <div>weather_state_name: {{ baseInfo.weather_state_name }}</div>
     <div>weather_state_abbr: {{ baseInfo.weather_state_abbr }}</div>
     <div>wind_direction_compass: {{ baseInfo.wind_direction_compass }}</div>
@@ -28,6 +29,7 @@
       "
     />
   </div>
+  <!--<div>{{ baseInfo }}</div>-->
 </template>
 
 <script>
@@ -39,9 +41,6 @@ export default {
       required: false,
       default: () => {},
     },
-  },
-  data() {
-    return {};
   },
 };
 </script>

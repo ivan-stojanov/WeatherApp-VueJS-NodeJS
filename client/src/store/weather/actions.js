@@ -17,7 +17,7 @@ export const SET_SELECTED_LOCATION = ({ commit, getters }, locationTitle) => {
     });
 };
 
-export const SET_SELECTED_LOCATION_PER_DAY = (
+export const SET_SELECTED_LOCATION_HOURLY = (
   { commit },
   { locationWoeid, locationDate },
 ) => {

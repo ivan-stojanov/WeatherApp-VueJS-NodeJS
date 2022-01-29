@@ -10,5 +10,5 @@ export const SET_SELECTED_LOCATION_PER_DAY_MUTATE = (
   state,
   { payload, locationDate },
 ) => {
-  state.selectedLocationPerDay[locationDate] = payload;
+  state.selectedLocationHourly[locationDate] = payload;
 };
