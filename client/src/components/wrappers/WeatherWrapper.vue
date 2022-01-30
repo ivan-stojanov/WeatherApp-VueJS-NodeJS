@@ -9,19 +9,14 @@
 import { mapGetters } from 'vuex';
 import WeatherBaseInfo from '../WeatherBaseInfo.vue';
 import WeatherDailyInfo from '../WeatherDailyInfo.vue';
-
-import { formatDate } from '../../utils/common.js';
+import { getCurrentDate } from '../../mixins/getCurrentDate.js';
 
 export default {
   name: 'WeatherWrapper',
+  mixins: [getCurrentDate],
   components: {
     WeatherBaseInfo,
     WeatherDailyInfo,
-  },
-  data() {
-    return {
-      todayDate: formatDate(new Date()),
-    };
   },
   computed: {
     ...mapGetters({

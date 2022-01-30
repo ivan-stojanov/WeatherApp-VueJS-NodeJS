@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="q-pa-md">
     <search-wrapper />
     <weather-wrapper />
   </div>

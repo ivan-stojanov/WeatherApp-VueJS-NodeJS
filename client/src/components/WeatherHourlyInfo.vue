@@ -4,7 +4,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-//import store from '@/store/index.js';
 
 import { removeZeroesFromDates } from '../utils/common.js';
 
@@ -33,8 +32,6 @@ export default {
       locationWoeid: this.hourlyInfo.woeid,
       locationDate: this.weatherDate,
     });
-
-    //console.log(store);
   },
   methods: {
     ...mapActions({

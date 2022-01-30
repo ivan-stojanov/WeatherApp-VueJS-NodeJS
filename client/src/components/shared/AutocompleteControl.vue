@@ -2,6 +2,7 @@
   <div class="autocomplete">
     <input
       type="text"
+      placeholder="Start typing..."
       v-model="searchTerm"
       @input="onChange"
       @keydown.down="onArrowDown"
@@ -113,10 +114,13 @@ export default {
   padding: 0;
   margin: 0;
   width: 100%;
-  max-width: 170px;
+  max-width: 180px;
   max-height: 250px;
   border: 1px solid #eeeeee;
   overflow: auto;
+  position: absolute;
+  z-index: 1;
+  background-color: white;
 }
 
 .autocomplete-result {

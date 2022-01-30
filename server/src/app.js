@@ -37,6 +37,8 @@ app.use(
 );
 app.use("/location", locationRouter);
 
+app.use("/assets", express.static(__dirname + "/public"));
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, async () => {
