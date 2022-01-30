@@ -28,7 +28,7 @@
 <script>
 export default {
   name: 'SearchAutocomplete',
-  emits: ['searchChanged', 'searchSelected'], //to do
+  emits: ['searchChanged', 'searchSelected'],
   props: {
     items: {
       type: Array,

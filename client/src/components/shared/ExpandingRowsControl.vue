@@ -70,3 +70,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.q-table__top,
+.q-table__bottom,
+thead tr:first-child th {
+  background-color: #97ddee;
+}
+</style>

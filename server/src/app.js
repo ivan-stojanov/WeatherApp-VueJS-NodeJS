@@ -12,7 +12,6 @@ app.services = {
 
 const allowedOrigins = [];
 
-//to do:
 if (true) {
   allowedOrigins.push("http://localhost:8080");
 }

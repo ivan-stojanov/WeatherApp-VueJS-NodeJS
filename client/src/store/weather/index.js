@@ -182,7 +182,7 @@ const state = {
     latt_long: '51.506321,-0.12714',
     timezone: 'Europe/London',*/
   },
-  selectedLocationHourly: {}, //to do - add mount and get hourly data
+  selectedLocationHourly: {},
 };
 
 export default {

@@ -1,13 +1,16 @@
 <template>
   <expanding-rows-control
-    title="5 Day Forecast"
+    :title="numberOfDays + ' Day Forecast'"
     :columns="columns"
     :rows="dailyInfo"
-    rowIdentifer="id"
+    :rowIdentifer="rowIdentifer"
     v-if="dailyInfo && dailyInfo.length"
   >
     <template v-slot:row_content="slotProps">
-      <weather-hourly-info :hourlyInfo="slotProps.rowData" />
+      <weather-hourly-info
+        :hourlyInfo="slotProps.rowData"
+        :key="slotProps.rowData[rowIdentifer]"
+      />
     </template>
   </expanding-rows-control>
 </template>
@@ -21,6 +24,7 @@ import { formatWeatherParameters } from '../mixins/formatWeatherParameters.js';
 export default {
   name: 'WeatherDailyInfo',
   mixins: [formatWeatherParameters],
+  inject: ['numberOfDays'],
   components: {
     WeatherHourlyInfo,
     ExpandingRowsControl,
@@ -34,12 +38,13 @@ export default {
   },
   data() {
     return {
+      rowIdentifer: 'id',
       columns: [
         {
           name: 'applicable_date',
           label: 'Date',
           field: 'applicable_date',
-          sortable: true, //to do
+          sortable: true,
         },
         {
           name: 'current_temp',

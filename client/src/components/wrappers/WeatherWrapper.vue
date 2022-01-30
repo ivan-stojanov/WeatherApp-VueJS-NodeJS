@@ -1,7 +1,9 @@
 <template>
   <div>
     <weather-base-info :baseInfo="weatherForToday(todayDate)" />
-    <weather-daily-info :dailyInfo="weatherForNextDays(todayDate, 5)" />
+    <weather-daily-info
+      :dailyInfo="weatherForNextDays(todayDate, numberOfDays)"
+    />
   </div>
 </template>
 
@@ -17,6 +19,18 @@ export default {
   components: {
     WeatherBaseInfo,
     WeatherDailyInfo,
+  },
+  props: {
+    numberOfDays: {
+      type: Number,
+      required: false,
+      default: () => 5,
+    },
+  },
+  provide() {
+    return {
+      numberOfDays: this.numberOfDays,
+    };
   },
   computed: {
     ...mapGetters({

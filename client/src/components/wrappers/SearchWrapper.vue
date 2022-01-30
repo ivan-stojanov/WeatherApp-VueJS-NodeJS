@@ -1,5 +1,5 @@
 <template>
-  <card-control>
+  <card-control :bgcol="'#97ddee'">
     <template v-slot:card_header>Check the weather by location:</template>
     <template v-slot:card_img></template>
     <template v-slot:card_content>

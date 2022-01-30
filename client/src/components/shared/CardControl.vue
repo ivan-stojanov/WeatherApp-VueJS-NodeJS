@@ -1,6 +1,6 @@
 <template>
   <div class="row items-start q-gutter-md">
-    <q-card class="my-card">
+    <q-card class="my-card" :style="'background-color: ' + bgcol">
       <slot name="card_header">
         <q-card-actions>
           <q-btn flat icon="event" />
@@ -21,6 +21,13 @@
 <script>
 export default {
   name: 'CardControl',
+  props: {
+    bgcol: {
+      type: String,
+      required: false,
+      default: () => 'transparent',
+    },
+  },
 };
 </script>
 

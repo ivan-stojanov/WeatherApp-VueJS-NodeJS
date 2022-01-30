@@ -1,6 +1,8 @@
 //import store from '@/store/index.js';
 import { mapState } from 'vuex';
 
+import { getDateTimeParamsForTimezone } from '../utils/common.js';
+
 export const getCurrentDate = {
   data() {
     return {
@@ -16,28 +18,12 @@ export const getCurrentDate = {
     current_timezone(newTimezone) {
       if (!newTimezone) return;
 
-      let dateObj = new Date();
-
-      let optionsYear = {
-          timeZone: newTimezone,
-          year: 'numeric',
-        },
-        formatterYear = new Intl.DateTimeFormat([], optionsYear);
-      let currentYear = parseInt(formatterYear.format(dateObj));
-
-      let optionsMonth = {
-          timeZone: newTimezone,
-          month: 'numeric',
-        },
-        formatterMonth = new Intl.DateTimeFormat([], optionsMonth);
-      let currentMonth = parseInt(formatterMonth.format(dateObj));
-
-      let optionsDay = {
-          timeZone: newTimezone,
-          day: 'numeric',
-        },
-        formatterDay = new Intl.DateTimeFormat([], optionsDay);
-      let currentDay = parseInt(formatterDay.format(dateObj));
+      const dateObj = new Date();
+      const {
+        yearNum: currentYear,
+        shortMonthNum: currentMonth,
+        shortDayNum: currentDay,
+      } = getDateTimeParamsForTimezone(dateObj, newTimezone);
 
       this.todayDate = currentYear + '-' + currentMonth + '-' + currentDay;
 
