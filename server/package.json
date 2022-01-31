@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Server side for the Weather app",
   "main": "src/app.js",
+  "engines": {
+    "node": "12.16.3"
+  },
   "scripts": {
     "start": "nodemon src/app.js",
     "start-prod": "node src/app.js",
@@ -12,7 +15,8 @@
   "dependencies": {
     "axios": "^0.25.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "serve": "^13.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
