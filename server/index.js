@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 
-const locationRouter = require("./routes/locationRoutes");
+const locationRouter = require("./src/routes/locationRoutes");
 
 const app = express();
 
-const locationService = require("./services/locationService");
+const locationService = require("./src/services/locationService");
 app.services = {
   locationService: locationService(),
 };
