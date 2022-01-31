@@ -1,0 +1,20 @@
+version: "3"
+services:
+  client-side-service:
+    image: weather-app-client
+    links:
+      - server-side-service
+    ports:
+      - "8080:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+  server-side-service:
+    image: weather-app-server
+    ports:
+      - "3000:3000"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
