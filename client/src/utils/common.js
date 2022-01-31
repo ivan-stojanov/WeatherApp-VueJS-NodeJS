@@ -68,6 +68,7 @@ export function getDateTimeParamsForTimezone(date, timezone) {
     longMinuteNum: getDateTimeParam('minute', '2-digit', date, timezone),
     shortSecondNum: getDateTimeParam('second', 'numeric', date, timezone),
     longSecondNum: getDateTimeParam('second', '2-digit', date, timezone),
+    timestampMS: date.getTime(),
   };
 
   /*

@@ -72,9 +72,6 @@ export default {
           label: 'Weather',
           field: 'weather_state_name',
         },
-        //https://quasar.dev/vue-components/table#Example--Body-cell-%5Bname%5D-slot
-        //https://forum.quasar-framework.org/topic/4336/q-table-merge-2-fields-into-a-single-column/5
-        //https://quasar.dev/vue-components/table#expanding-rows
       ],
     };
   },

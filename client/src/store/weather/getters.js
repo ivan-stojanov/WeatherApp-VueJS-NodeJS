@@ -1,4 +1,8 @@
-import { removeZeroesFromDates, formatDate } from '../../utils/common.js';
+import {
+  removeZeroesFromDates,
+  formatDate,
+  getDateTimeParamsForTimezone,
+} from '../../utils/common.js';
 
 /* 
 options that appers in the search control
@@ -68,7 +72,32 @@ get hourly weather info, based on a date
 export const HOURLY_WEATHER_PER_DATE = (state) => (date) => {
   if (!state.selectedLocationHourly) return {};
 
-  return state.selectedLocationHourly[date];
+  return state.selectedLocationHourly[date]?.map(function (obj) {
+    let {
+      timestampMS: timestampMSCurrent,
+      yearNum: yearCurrent,
+      shortMonthNum: monthCurrent,
+      shortDayNum: dayCurrent,
+    } = getDateTimeParamsForTimezone(
+      new Date(obj.created),
+      state?.selectedLocation?.timezone,
+    );
+
+    let currentDate = yearCurrent + '-' + monthCurrent + '-' + dayCurrent;
+
+    return {
+      ...obj,
+      is_match: currentDate == date ? true : false,
+      x: timestampMSCurrent,
+      y: obj.the_temp,
+      marker: {
+        symbol: `url(https://www.metaweather.com/static/img/weather/png/64/${obj.weather_state_abbr}.png)`,
+      },
+    };
+  });
+  //.filter((item) => {
+  //  return item.is_match;
+  //});
 };
 
 /*

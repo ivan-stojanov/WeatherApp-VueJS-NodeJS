@@ -1,14 +1,25 @@
 <template>
-  <div>{{ hourlyWeather }}<br /><br /><br /></div>
+  <div>
+    <chart-control
+      :yAxisLabel="'Temperature'"
+      :seriesName="'Temp °C '"
+      :seriesData="hourlyWeather"
+      :key="hourlyWeather?.length"
+    ></chart-control>
+  </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import ChartControl from './shared/ChartControl.vue';
 
 import { removeZeroesFromDates } from '../utils/common.js';
 
 export default {
   name: 'WeatherHourlyInfo',
+  components: {
+    ChartControl,
+  },
   props: {
     hourlyInfo: {
       type: Object,
