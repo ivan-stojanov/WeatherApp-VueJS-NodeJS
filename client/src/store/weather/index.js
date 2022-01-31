@@ -3,22 +3,24 @@ import * as getters from './getters.js';
 import * as mutations from './mutations.js';
 
 const state = {
+  //array of location objects, used for filling the auto-complete control
+  //format retrived from: https://www.metaweather.com/api/#locationsearch
   searchOptions: [
-    /*{
+    /*
+    {
       title: 'San Francisco',
       location_type: 'City',
       woeid: 2487956,
       latt_long: '37.777119, -122.41964',
     },
-    {
-      title: 'San Diego',
-      location_type: 'City',
-      woeid: 2487889,
-      latt_long: '32.715691,-117.161720',
-    },*/
+    */
   ],
+
+  //object of base data for selected of location, used for filling the weather base info for the current day and next few days
+  //format retrived from: https://www.metaweather.com/api/#location
   selectedLocation: {
-    /*consolidated_weather: [
+    /*
+    consolidated_weather: [
       {
         id: 5546156105924608,
         weather_state_name: 'Heavy Cloud',
@@ -34,23 +36,6 @@ const state = {
         air_pressure: 1035.0,
         humidity: 79,
         visibility: 7.33000526922771,
-        predictability: 71,
-      },
-      {
-        id: 6676450838052864,
-        weather_state_name: 'Heavy Cloud',
-        weather_state_abbr: 'hc',
-        wind_direction_compass: 'W',
-        created: '2022-01-28T18:59:01.846739Z',
-        applicable_date: '2022-01-29',
-        min_temp: 5.85,
-        max_temp: 13.415,
-        the_temp: 12.254999999999999,
-        wind_speed: 10.557952879946447,
-        wind_direction: 274.6677210568365,
-        air_pressure: 1027.0,
-        humidity: 77,
-        visibility: 10.88455917442138,
         predictability: 71,
       },
     ],
@@ -71,20 +56,40 @@ const state = {
         url: 'http://www.bbc.co.uk/weather/',
         crawl_rate: 360,
       },
-      {
-        title: 'Forecast.io',
-        slug: 'forecast-io',
-        url: 'http://forecast.io/',
-        crawl_rate: 480,
-      },
     ],
     title: 'London',
     location_type: 'City',
     woeid: 44418,
     latt_long: '51.506321,-0.12714',
-    timezone: 'Europe/London',*/
+    timezone: 'Europe/London',
+    */
   },
-  selectedLocationHourly: {},
+
+  //array of reduced location objects for different time slots in the last few days, used for creating the higchart chart (when expanding the rows)
+  //format retrived from: https://www.metaweather.com/api/#locationday
+  selectedLocationHourly: {
+    /*
+    {
+      "id": 373220,
+      "weather_state_name": "Light Rain",
+      "weather_state_abbr": "lr",
+      "wind_direction_compass": "N",
+      "created": "2013-04-27T20:52:55.929470Z",
+      "applicable_date": "2013-04-27",
+      "min_temp": 3.07,
+      "max_temp": 10.01,
+      "the_temp": null,
+      "wind_speed": 9.85,
+      "wind_direction": 358.0,
+      "air_pressure": null,
+      "humidity": 74,
+      "visibility": 9.997862483098704,
+      "predictability": 75
+    },
+    */
+  },
+
+  //global message (string), used for detecting is server API is up/down
   apiError: null,
 };
 

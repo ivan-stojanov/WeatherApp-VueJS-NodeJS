@@ -1,3 +1,12 @@
+<!-- Global Card control, decopled from the state, based on quasar framework: https://quasar.dev/vue-components/table#expanding-rows -->
+<!-- 
+It receives:
+- (title) title at the top of the control, based on: https://quasar.dev/vue-components/table#qtable-api
+- (columns) title at the top of the control, based on: https://quasar.dev/vue-components/table#qtable-api
+- (rows) title at the top of the control, based on: https://quasar.dev/vue-components/table#qtable-api
+- (rowIdentifer) title at the top of the control, based on: https://quasar.dev/vue-components/table#qtable-api
+-->
+
 <template>
   <div>
     <q-table

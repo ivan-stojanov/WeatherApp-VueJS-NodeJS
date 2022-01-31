@@ -1,3 +1,9 @@
+<!-- Global Card control, decopled from the state, based on quasar framework: https://quasar.dev/vue-components/card#qcard-api -->
+<!-- 
+It receives:
+- (bgcol) color for the backgroud
+-->
+
 <template>
   <div class="row items-start q-gutter-md">
     <q-card class="my-card" :style="'background-color: ' + bgcol">

@@ -4,9 +4,7 @@ import {
   getDateTimeParamsForTimezone,
 } from '../../utils/common.js';
 
-/* 
-options that appers in the search control
-*/
+//array of location names, used for filling the auto-complete control
 export const SEARCH_OPTIONS = (state) => {
   if (!state.searchOptions) return [];
 
@@ -15,9 +13,8 @@ export const SEARCH_OPTIONS = (state) => {
   });
 };
 
-/*
-get full location data (first found element), based on any property-value pair
-*/
+//get the location object (from the search array), based on key-value pair
+//example usage, get the location object by location title, in case when item is seelcted from the autocomplete list
 export const GET_LOCATION_BY_PROPERTY = (state) => (property, value) => {
   if (!state.searchOptions) return {};
 
@@ -29,9 +26,11 @@ export const GET_LOCATION_BY_PROPERTY = (state) => (property, value) => {
   return locations[0];
 };
 
-/*
-key-value representation, where key is in the format YYYY-MM-DD and the value are the items from consolidated_weather array
-*/
+//transformation of the response for the forecast (from consolidated_weather at https://www.metaweather.com/api/#location)
+//into object with key-value pairs, where:
+//  key is in the format YYYY-MM-DD
+//  value are the items from consolidated_weather array + additiinaly there are other fileds from the root included
+//example usage: for performace, it't better to have the forecast available by kay-value pairs from an object. This acts as a state (just in format that we need)
 export const WEATHER_DAILY_FORECAST = (state) => {
   if (
     Array.isArray(state.selectedLocation?.consolidated_weather) &&
@@ -59,16 +58,32 @@ export const WEATHER_DAILY_FORECAST = (state) => {
   return {};
 };
 
-/*
-get base weather info, based on a date
-*/
+//a getter for interacting with the transformed entity WEATHER_DAILY_FORECAST and getting weather data for a single day (by date)
+//example usage: getting the base weather data for today
 export const DAILY_WEATHER_PER_DATE = (state, getters) => (date) => {
   return getters.WEATHER_DAILY_FORECAST[date] ?? null;
 };
 
-/*
-get hourly weather info, based on a date
-*/
+//a getter for interacting with the transformed entity WEATHER_DAILY_FORECAST and getting weather data for a few days (by date and number of days)
+//example usage: getting the base weather data for today
+export const WEATHER_DAY_RANGE = (state, getters) => (date, numberOfDays) => {
+  const forecastArr = [];
+  const todayDate = date;
+
+  let resultDay, tempDay;
+  for (let days = 1; days <= numberOfDays; days++) {
+    resultDay = new Date(todayDate);
+    resultDay.setDate(resultDay.getDate() + days);
+
+    tempDay = getters.WEATHER_DAILY_FORECAST[formatDate(resultDay)] ?? null;
+    if (tempDay) forecastArr.push(tempDay);
+  }
+
+  return forecastArr;
+};
+
+//transformation of the response for the forecast, for different time slots in the last few days
+//example usage: getting the data, used for the higchart chart, when expanding a row
 export const HOURLY_WEATHER_PER_DATE =
   (state) =>
   (date, property = 'the_temp') => {
@@ -104,26 +119,4 @@ export const HOURLY_WEATHER_PER_DATE =
       .sort(function (a, b) {
         return a.x - b.x;
       });
-    //.filter((item) => {
-    //  return item.is_match;
-    //});
   };
-
-/*
-starting from tommorow and then the next numberOfDays days
-*/
-export const WEATHER_DAY_RANGE = (state, getters) => (date, numberOfDays) => {
-  const forecastArr = [];
-  const todayDate = date;
-
-  let resultDay, tempDay;
-  for (let days = 1; days <= numberOfDays; days++) {
-    resultDay = new Date(todayDate);
-    resultDay.setDate(resultDay.getDate() + days);
-
-    tempDay = getters.WEATHER_DAILY_FORECAST[formatDate(resultDay)] ?? null;
-    if (tempDay) forecastArr.push(tempDay);
-  }
-
-  return forecastArr;
-};

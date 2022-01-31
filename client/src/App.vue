@@ -9,7 +9,6 @@
 import Homepage from './components/pages/Homepage.vue';
 import NotificationControl from './components/shared/NotificationControl.vue';
 
-// App.vue
 export default {
   name: 'App',
   components: {

@@ -1,3 +1,5 @@
+<!-- A wrapper that binds the WeatherXXX related components with the app state -->
+
 <template>
   <div>
     <weather-base-info :baseInfo="weatherForToday(todayDate)" />

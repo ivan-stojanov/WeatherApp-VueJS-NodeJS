@@ -1,3 +1,9 @@
+<!-- Component that shows the base info for the weather for a few days ahead, in extandable table -->
+<!-- 
+It receives:
+- (dailyInfo) data for the current selected location for a few days ahead
+-->
+
 <template>
   <expanding-rows-control
     :title="numberOfDays + ' Day Forecast'"

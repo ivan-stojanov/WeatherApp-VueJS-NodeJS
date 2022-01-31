@@ -1,3 +1,9 @@
+<!-- Component that shows the base info for the weather for a few time slots from the past, in a chart -->
+<!-- 
+It receives:
+- (dailyInfo) data for the current selected location for a few time slots from the past
+-->
+
 <template>
   <div>
     <chart-control

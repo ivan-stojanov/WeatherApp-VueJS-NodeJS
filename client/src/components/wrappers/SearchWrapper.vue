@@ -1,3 +1,5 @@
+<!-- A wrapper that binds the AutocompleteControl with the app state -->
+
 <template>
   <card-control :bgcol="'#97ddee'">
     <template v-slot:card_header>Check the weather by location:</template>

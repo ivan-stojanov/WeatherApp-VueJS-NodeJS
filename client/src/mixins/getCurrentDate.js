@@ -3,6 +3,11 @@ import { mapState } from 'vuex';
 
 import { getDateTimeParamsForTimezone } from '../utils/common.js';
 
+/* 
+Mixin that provides:
+- todayDate in the format YYYY-M-D (based on the seleted location)
+- current_timezone (based on the seleted location)
+*/
 export const getCurrentDate = {
   data() {
     return {

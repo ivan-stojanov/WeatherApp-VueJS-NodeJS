@@ -1,3 +1,9 @@
+<!-- Component that shows the base info for the weather in the currnt day -->
+<!-- 
+It receives:
+- (baseInfo) data for the current selected location
+-->
+
 <template>
   <card-control v-if="baseInfo && baseInfo.id">
     <template v-slot:date>

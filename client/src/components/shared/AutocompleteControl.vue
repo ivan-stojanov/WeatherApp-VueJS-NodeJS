@@ -1,3 +1,12 @@
+<!-- Global Autocomplete control, decopled from the state -->
+<!-- 
+It receives:
+- (items) number of items to show
+- (serverDown) status of the api (flag that helps in closing the loading state, in case of no results)
+It emits:
+- (searchChanged) - event when search term is changed
+- (searchSelected) - event when item is changed
+-->
 <template>
   <div class="autocomplete">
     <input

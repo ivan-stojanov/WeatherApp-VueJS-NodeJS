@@ -1,3 +1,5 @@
+<!-- Notification control, bind to the apiError from the state, based on quasar framework: https://quasar.dev/vue-components/table#expanding-rows -->
+
 <template>
   <teleport to="body">
     <!--<div v-if="api_error">{{ api_error }}</div>-->

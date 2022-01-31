@@ -1,5 +1,8 @@
 import { formatOutput } from '../utils/common.js';
 
+/* 
+Mixin that provides methods for formatting the values 
+*/
 export const formatWeatherParameters = {
   methods: {
     formatNumber(value, decimals) {

@@ -1,3 +1,12 @@
+<!-- Global Chart control, decopled from the state -->
+<!-- 
+It receives:
+- (chartTitle) value shown above the chart as a big title, based on: https://api.highcharts.com/highcharts/series.spline
+- (chartSubTitle) value shown above the chart as a smaller title, based on: https://api.highcharts.com/highcharts/series.spline
+- (yAxisLabel) value used as a label for the y axis, based on: https://api.highcharts.com/highcharts/series.spline
+- (serisDataFull) array of series, based on: https://api.highcharts.com/highcharts/series.spline
+-->
+
 <template>
   <div class="chartElem">
     <div class="row">
