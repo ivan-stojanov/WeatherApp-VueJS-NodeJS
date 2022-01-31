@@ -69,36 +69,45 @@ export const DAILY_WEATHER_PER_DATE = (state, getters) => (date) => {
 /*
 get hourly weather info, based on a date
 */
-export const HOURLY_WEATHER_PER_DATE = (state) => (date) => {
-  if (!state.selectedLocationHourly) return {};
+export const HOURLY_WEATHER_PER_DATE =
+  (state) =>
+  (date, property = 'the_temp') => {
+    if (!state.selectedLocationHourly) return {};
 
-  return state.selectedLocationHourly[date]?.map(function (obj) {
-    let {
-      timestampMS: timestampMSCurrent,
-      yearNum: yearCurrent,
-      shortMonthNum: monthCurrent,
-      shortDayNum: dayCurrent,
-    } = getDateTimeParamsForTimezone(
-      new Date(obj.created),
-      state?.selectedLocation?.timezone,
-    );
+    return state.selectedLocationHourly[date]
+      ?.map(function (obj) {
+        let {
+          timestampMS: timestampMSCurrent,
+          yearNum: yearCurrent,
+          shortMonthNum: monthCurrent,
+          shortDayNum: dayCurrent,
+        } = getDateTimeParamsForTimezone(
+          new Date(obj.created),
+          state?.selectedLocation?.timezone,
+        );
 
-    let currentDate = yearCurrent + '-' + monthCurrent + '-' + dayCurrent;
+        let currentDate = yearCurrent + '-' + monthCurrent + '-' + dayCurrent;
 
-    return {
-      ...obj,
-      is_match: currentDate == date ? true : false,
-      x: timestampMSCurrent,
-      y: obj.the_temp,
-      marker: {
-        symbol: `url(https://www.metaweather.com/static/img/weather/png/64/${obj.weather_state_abbr}.png)`,
-      },
-    };
-  });
-  //.filter((item) => {
-  //  return item.is_match;
-  //});
-};
+        return {
+          ...obj,
+          is_match: currentDate == date ? true : false,
+          x: timestampMSCurrent,
+          y: obj[property],
+          marker: {
+            symbol:
+              property == 'the_temp'
+                ? `url(https://www.metaweather.com/static/img/weather/png/64/${obj.weather_state_abbr}.png)`
+                : '',
+          },
+        };
+      })
+      .sort(function (a, b) {
+        return a.x - b.x;
+      });
+    //.filter((item) => {
+    //  return item.is_match;
+    //});
+  };
 
 /*
 starting from tommorow and then the next numberOfDays days

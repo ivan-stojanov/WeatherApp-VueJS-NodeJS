@@ -5,6 +5,7 @@
     <template v-slot:card_content>
       <autocomplete-control
         :items="searchOptions"
+        :serverDown="api_error ? true : false"
         @searchChanged="onChange"
         @searchSelected="onSelect"
       />
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapState } from 'vuex';
 import AutocompleteControl from '../shared/AutocompleteControl.vue';
 import CardControl from '../shared/CardControl.vue';
 
@@ -26,6 +27,9 @@ export default {
   computed: {
     ...mapGetters({
       searchOptions: 'weather/SEARCH_OPTIONS',
+    }),
+    ...mapState({
+      api_error: (state) => state?.weather?.apiError,
     }),
   },
   methods: {

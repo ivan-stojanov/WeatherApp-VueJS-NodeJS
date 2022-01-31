@@ -35,6 +35,11 @@ export default {
       required: false,
       default: () => [],
     },
+    serverDown: {
+      type: Boolean,
+      required: false,
+      default: () => false,
+    },
   },
   data() {
     return {
@@ -98,6 +103,11 @@ export default {
     items: function (newValue, oldValue) {
       if (newValue.length !== oldValue.length || newValue.length == 0) {
         this.results = newValue;
+        this.isLoading = false;
+      }
+    },
+    serverDown: function (newValue) {
+      if (newValue) {
         this.isLoading = false;
       }
     },

@@ -1,11 +1,7 @@
 <template>
   <div class="chartElem">
     <div class="row">
-      <highcharts
-        class="chart"
-        :options="chartOptions"
-        :updateArgs="updateArgs"
-      ></highcharts>
+      <highcharts class="chart" :options="chartOptions"></highcharts>
     </div>
   </div>
 </template>
@@ -29,12 +25,7 @@ export default {
       required: false,
       default: () => '',
     },
-    seriesName: {
-      type: String,
-      required: false,
-      default: () => '',
-    },
-    seriesData: {
+    serisDataFull: {
       type: Array,
       required: false,
       default: () => [],
@@ -79,9 +70,11 @@ export default {
             },
           },
         },
-        series: [
-          {
-            name: this.seriesName,
+        series: this.serisDataFull.map((item) => {
+          return {
+            name: item.seriesName,
+            data: item.seriesData,
+            color: item.seriesColor,
             marker: {
               enabled: false,
               states: {
@@ -90,9 +83,8 @@ export default {
                 },
               },
             },
-            data: this.seriesData,
-          },
-        ],
+          };
+        }),
       },
     };
   },

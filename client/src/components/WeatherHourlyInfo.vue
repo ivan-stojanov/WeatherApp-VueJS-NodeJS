@@ -1,10 +1,10 @@
 <template>
   <div>
     <chart-control
+      v-if="hourlyWeatherTheTemp && hourlyWeatherTheTemp.length"
       :yAxisLabel="'Temperature'"
-      :seriesName="'Temp °C '"
-      :seriesData="hourlyWeather"
-      :key="hourlyWeather?.length"
+      :serisDataFull="serisDataFull"
+      :key="hourlyWeatherTheTemp?.length"
     ></chart-control>
   </div>
 </template>
@@ -34,8 +34,27 @@ export default {
     weatherDate() {
       return removeZeroesFromDates(this.hourlyInfo.applicable_date);
     },
-    hourlyWeather() {
-      return this.weatherPerHourForDay(this.weatherDate);
+    hourlyWeatherTheTemp() {
+      return this.weatherPerHourForDay(this.weatherDate, 'the_temp');
+    },
+    serisDataFull() {
+      return [
+        {
+          seriesData: this.weatherPerHourForDay(this.weatherDate, 'the_temp'),
+          seriesName: 'Temp °C ',
+          seriesColor: 'green',
+        },
+        {
+          seriesData: this.weatherPerHourForDay(this.weatherDate, 'max_temp'),
+          seriesName: 'Max Temp °C ',
+          seriesColor: 'red',
+        },
+        {
+          seriesData: this.weatherPerHourForDay(this.weatherDate, 'min_temp'),
+          seriesName: 'Min Temp °C ',
+          seriesColor: 'blue',
+        },
+      ];
     },
   },
   mounted() {
