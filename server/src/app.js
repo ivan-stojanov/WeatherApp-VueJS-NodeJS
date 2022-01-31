@@ -10,11 +10,10 @@ app.services = {
   locationService: locationService(),
 };
 
-const allowedOrigins = [];
-
-if (true) {
-  allowedOrigins.push("http://localhost:8080");
-}
+const allowedOrigins = [
+  "https://vue-weather-app-client.vercel.app/",
+  "http://localhost:8080",
+];
 
 app.use(
   cors({
@@ -34,9 +33,9 @@ app.use(
     },
   })
 );
-app.use("/location", locationRouter);
+app.use("/api/location", locationRouter);
 
-app.use("/assets", express.static(__dirname + "/public"));
+app.use("/api/assets", express.static(__dirname + "/public"));
 
 const PORT = process.env.PORT || 3000;
 

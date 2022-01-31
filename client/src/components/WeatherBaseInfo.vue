@@ -72,7 +72,7 @@ It receives:
           {{ baseInfo.wind_direction_compass }} ({{
             formatNumber(baseInfo.wind_direction)
           }})
-          <q-btn flat :icon="`img:${backend_url}/assets/compass-icn.png`" />
+          <q-btn flat :icon="`img:${backend_url}/api/assets/compass-icn.png`" />
         </div>
         <div>
           <span v-weather-label>Air Pressure:</span>

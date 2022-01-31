@@ -10,7 +10,7 @@ export const SET_SEARCH_OPTIONS = ({ commit }, searchTerm) => {
 
   axios
     .get(
-      `${process.env.VUE_APP_BACKEND_URL}/location/search/?query=${searchTerm}`,
+      `${process.env.VUE_APP_BACKEND_URL}/api/location/search/?query=${searchTerm}`,
     )
     .then((response) => {
       commit('SET_SEARCH_OPTIONS_MUTATE', response.data);
@@ -28,7 +28,7 @@ export const SET_SELECTED_LOCATION = ({ commit, getters }, locationTitle) => {
   const location = getters.GET_LOCATION_BY_PROPERTY('title', locationTitle);
 
   axios
-    .get(`${process.env.VUE_APP_BACKEND_URL}/location/${location.woeid}`)
+    .get(`${process.env.VUE_APP_BACKEND_URL}/api/location/${location.woeid}`)
     .then((response) => {
       commit('SET_SELECTED_LOCATION_MUTATE', response.data);
     })
@@ -49,9 +49,11 @@ export const SET_SELECTED_LOCATION_HOURLY = (
 
   axios
     .get(
-      `${process.env.VUE_APP_BACKEND_URL}/location/${locationWoeid}/${parseInt(
-        year,
-      )}/${parseInt(month)}/${parseInt(date)}`,
+      `${
+        process.env.VUE_APP_BACKEND_URL
+      }/api/location/${locationWoeid}/${parseInt(year)}/${parseInt(
+        month,
+      )}/${parseInt(date)}`,
     )
     .then((response) => {
       commit('SET_SELECTED_LOCATION_PER_DAY_MUTATE', {
