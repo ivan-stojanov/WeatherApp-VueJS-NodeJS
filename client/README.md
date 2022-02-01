@@ -33,7 +33,7 @@ root\client> npm run build
 ```
 root\client> npm run lint
 ```
-Build a Docker image
+## Build a Docker image
 ```
 root\client> docker build -t weather-app-client
 ```
