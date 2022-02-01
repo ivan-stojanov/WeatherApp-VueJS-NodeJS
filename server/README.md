@@ -39,7 +39,7 @@ Run the app in the production mode
 root\server> npm run start-prod
 ```
 
-Build a Docker image
+## Build a Docker image
 
 ```
 root\server> docker build -t weather-app-server
